@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
-  <component name="PublishConfigData" serverName="bchhm">
+  <component name="PublishConfigData" serverName="bchhm" uploadOnCheckin="d2a46cfe-060f-46f9-88c6-e2099b497927">
     <serverData>
       <paths name="bchhm">
         <serverdata>
@@ -10,5 +10,6 @@
         </serverdata>
       </paths>
     </serverData>
+    <option name="myUploadOnCheckinName" value="bchhm" />
   </component>
 </project>

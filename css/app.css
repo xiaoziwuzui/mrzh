@@ -212,15 +212,16 @@ body{
     display: inline-block;
 }
 .formula-detail .formula-material>li>.formula-material{
+
 }
 .formula-detail .formula-material>li>.formula-material:after{
     position: absolute;
     content: " ";
     display: block;
-    top:-15px;
+    top:-18px;
     background-color: #ccc;
     width: 1px;
-    height: 15px;
+    height: 10px;
 }
 
 
