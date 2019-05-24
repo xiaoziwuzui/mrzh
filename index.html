@@ -7,46 +7,62 @@
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-status-bar-style" content="black">
     <link rel="stylesheet" href="/assets/plugins/mui/css/mui.min.css">
+    <link rel="stylesheet" href="/assets/plugins/mui/css/mui.indexedlist.css">
+    <link rel="stylesheet" href="/css/app.css">
     <script type="text/javascript" src="/assets/plugins/mui/js/mui.min.js"></script>
+    <script type="text/javascript" src="/assets/plugins/mui/js/mui.view.js"></script>
+    <script type="text/javascript" src="/assets/plugins/mui/js/mui.indexedlist.js"></script>
     <script type="text/javascript" src="/js/data.js"></script>
     <script type="text/javascript" src="/js/app.js"></script>
     <style type="text/css">
-        .mui-header{
-            width: 100%;
-            min-height: 44px;
-            padding: 10px 15px;
-            background-color: #FFF;
-            text-align: center;
-            position: relative;
-        }
-        .mui-header:after {
-            position: absolute;
-            right: 0;
-            left: 0;
-            bottom:0;
-            height: 1px;
-            content: '';
-            -webkit-transform: scaleY(.5);
-            transform: scaleY(.5);
-            background-color: #c8c7cc;
-        }
+
     </style>
 </head>
 <body>
-<header class="mui-bar mui-bar-nav" style="padding-right: 15px;">
-    <h1 class="mui-title">材料价格计算器</h1>
-    <button id='setting' class=" mui-pull-right mui-btn-link">设置</button>
-</header>
-    <div class="mui-content">
-        <div class="mui-row">
-            <button class="mui-btn mui-btn-green">选择配方</button>
+<div id="app" class="mui-views">
+    <div class="mui-view">
+        <div class="mui-navbar">
+        </div>
+        <div class="mui-pages">
         </div>
     </div>
-    <script type="text/javascript">
-        mui.plusReady(function() {
-            var a = new App();
-            a.init();
-        });
-    </script>
+</div>
+<!--入口首页-->
+<div id="index" class="mui-page">
+    <!--页面标题栏开始-->
+    <div class="mui-navbar-inner mui-bar mui-bar-nav">
+        <h1 class="mui-center mui-title">材料价格计算器</h1>
+    </div>
+    <div class="mui-page-content">
+        <div class="mui-scroll-wrapper">
+            <div class="mui-scroll">
+                <div><button class="mui-btn mui-btn-green openFormula">选择配方</button></div>
+                <div class="formula-detail"></div>
+            </div>
+        </div>
+    </div>
+</div>
+<!--配方选择-->
+<div id="formula" class="mui-page">
+    <!--页面标题栏开始-->
+    <div class="mui-navbar-inner mui-bar mui-bar-nav">
+        <h1 class="mui-center mui-title">配方选择</h1>
+    </div>
+    <div class="mui-page-content">
+        <div class="mui-scroll-wrapper">
+            <div class="mui-scroll formulaBody"></div>
+        </div>
+    </div>
+</div>
+<!--入口首页-->
+<script type="text/javascript">
+    //初始化mui
+    mui.init();
+    mui.ready(function () {
+        var a = new App();
+        a.init();
+        console.log('test');
+    });
+</script>
 </body>
 </html>
