@@ -7484,14 +7484,22 @@ Function.prototype.bind = Function.prototype.bind || function(to) {
             backdrop.classList.add(CLASS_ACTIVE);
         }
         var btns = $.qsa('.' + CLASS_POPUP_BUTTON, popupElement);
-        var input = popupElement.querySelector('.' + CLASS_POPUP_INPUT + ' input');
+        // var input = popupElement.querySelector('.' + CLASS_POPUP_INPUT + ' input');
+        var input = $.qsa('.' + CLASS_POPUP_INPUT + ' input');
         var popup = {
             element: popupElement,
             close: function(index, animate) {
                 if (popupElement) {
+                	var value;
+                	if(input.length > 0){
+                		value = [];
+                		for(var b = 0;b<input.length;b++){
+                			value.push(input[b].value || '');
+						}
+					}
                     var result = callback && callback({
                         index: index || 0,
-                        value: input && input.value || ''
+                        value: input && value
                     });
                     if (result === false) { //返回false则不关闭当前popup
                         return;
@@ -7595,7 +7603,16 @@ Function.prototype.bind = Function.prototype.bind || function(to) {
             }
         }
         if (!$.os.plus || type === 'div') {
-            return createPopup(createInner(message, title || '提示', createInput(placeholder)) + createButtons(btnArray || ['取消', '确认']), callback);
+        	var h = '';
+        	if(placeholder.constructor === Array){
+        		for(var j = 0;j <placeholder.length;j++){
+        			h += createInput(placeholder[j]);
+				}
+			}else{
+        		h = createInput(placeholder);
+			}
+			h = createInner(message, title || '提示', h);
+            return createPopup(h + createButtons(btnArray || ['取消', '确认']), callback);
         }
         return plus.nativeUI.prompt(message, callback, title || '提示', placeholder, btnArray || ['取消', '确认']);
     };

@@ -1,17 +1,90 @@
 //source 来源(1:采集,2:购买,3:制作)
 //level 品质 1:白色,2:绿色,3:蓝色
 //type 类型 1:资源,2:半成品
-
+//job 职业 1:矿工,2:麻工,3:木工,4:护甲工,5:枪械工
 var material = [
     {'key':'mt','name':'木头','level':1,'source':[1]},
     {'key':'st','name':'石头','level':1,'source':[1]},
     {'key':'m','name':'麻','level':1,'source':[1]},
+    //庄园产物
+    {'key':'mz','name':'麻籽','level':3,'source':[1,2]},
+    {'key':'xs','name':'硝石','level':3,'source':[1,2]},
+    {'key':'sy','name':'树油','level':3,'source':[1,2]},
+    {'key':'xzy','name':'小枝芽','level':3,'source':[1,2]},
+    {'key':'fqk','name':'方铅矿','level':3,'source':[1,2]},
+    {'key':'qy','name':'禽羽','level':3,'source':[1,2]},
+    //秋日资源
+    {'key':'xsz','name':'小树枝','level':2,'source':[1,2]},
+    {'key':'gt','name':'骨头','level':2,'source':[1,2]},
     {'key':'zwgj','name':'植物根茎','level':2,'source':[1,2]},
-    {'key':'mjp','name':'麻茎皮','level':3,'source':[1,2]},
-    {'key':'mgj','name':'麻杆茎','level':2,'source':[1,2]},
+    {'key':'ymtm','name':'硬木藤蔓','level':3,'source':[1,2]},
+    {'key':'sp','name':'兽皮','level':3,'source':[1,2]},
+    {'key':'ss','name':'燧石','level':3,'source':[1,2]},
+    //沙石资源
     {'key':'sz','name':'树脂','level':2,'source':[1,2]},
-    {'key':'xs','name':'硝石','level':2,'source':[1,2]},
+    {'key':'mgj','name':'麻杆茎','level':2,'source':[1,2]},
+    {'key':'zz','name':'爪子','level':2,'source':[1,2]},
+    {'key':'xk','name':'锡矿','level':2,'source':[1,2]},
+    {'key':'mx','name':'木心','level':3,'source':[1,2]},
+    {'key':'mjp','name':'麻茎皮','level':3,'source':[1,2]},
+    {'key':'sj','name':'兽筋','level':3,'source':[1,2]},
+    {'key':'lh','name':'硫磺','level':3,'source':[1,2]},
+    //高地资源
+    {'key':'lbm','name':'老柏木','level':2,'source':[1,2]},
+    {'key':'bsy','name':'柏树叶','level':3,'source':[1,2]},
+    {'key':'ymy','name':'亚麻叶','level':2,'source':[1,2]},
+    {'key':'ymhb','name':'亚麻花瓣','level':3,'source':[1,2]},
+    {'key':'lk','name':'铝矿','level':2,'source':[1,2]},
+    {'key':'ljs','name':'蓝晶石','level':3,'source':[1,2]},
+    {'key':'yz','name':'油脂','level':2,'source':[1,2]},
+    {'key':'shj','name':'兽角','level':3,'source':[1,2]},
+    //沼泽资源
+    {'key':'jlrp','name':'龟裂韧皮','level':3,'source':[1,2]},
+    {'key':'kqs','name':'孔雀石','level':3,'source':[1,2]},
+    {'key':'hmy','name':'红麻叶','level':3,'source':[1,2]},
+    {'key':'yjp','name':'硬甲皮','level':3,'source':[1,2]},
+    //雪山资源
+    {'key':'tk','name':'铜矿','level':2,'source':[1,2]},
+    {'key':'hym','name':'黄杨木','level':2,'source':[1,2]},
+    {'key':'hmye','name':'黄麻叶','level':2,'source':[1,2]},
+    {'key':'sya','name':'兽牙','level':2,'source':[1,2]},
+    {'key':'sm','name':'兽毛','level':3,'source':[1,2]},
+    {'key':'gjk','name':'硅晶矿','level':3,'source':[1,2]},
+    {'key':'ksy','name':'阔树叶','level':3,'source':[1,2]},
+    {'key':'hmg','name':'黄麻杆','level':3,'source':[1,2]},
+    //海岛资源
+    {'key':'yk','name':'银矿','level':2,'source':[1,2]},
+    {'key':'lxm','name':'老橡木','level':2,'source':[1,2]},
+    {'key':'jmy','name':'剑麻叶','level':2,'source':[1,2]},
+    {'key':'sx','name':'兽血','level':2,'source':[1,2]},
+    {'key':'zhz','name':'珍珠','level':2,'source':[1,2]},
+    {'key':'shyk','name':'深红银矿','level':3,'source':[1,2]},
+    {'key':'cg','name':'残根','level':3,'source':[1,2]},
+    {'key':'hmp','name':'红麻皮','level':3,'source':[1,2]},
+    //特殊资源
+    {'key':'bmml','name':'薄膜面料','level':3,'source':[1,2]},
+    {'key':'gfz','name':'高分子','level':3,'source':[1,2]},
+    {'key':'wb','name':'钨棒','level':3,'source':[2]},
+    {'key':'dz','name':'钉子','level':3,'source':[2]},
+    {'key':'jd','name':'胶带','level':3,'source':[2]},
+    {'key':'maox','name':'毛线','level':3,'source':[2]},
+    {'key':'gj','name':'钢筋','level':3,'source':[2]},
+    //半成品
     {'key':'cbt','name':'粗布条','level':2,'type':2,'material':{'m':15,'zwgj':2},'source':[2,3]},
+    {'key':'sl','name':'塑料','level':3,'type':2,'material':{'b':1,'sz':8,'xs':2,'mgj':2},'source':[2,3]},
     {'key':'b','name':'布','level':2,'type':2,'material':{'cbt':1,'mjp':1},'source':[2,3]},
-    {'key':'sl','name':'塑料','level':3,'type':2,'material':{'b':1,'sz':8,'xs':2,'mgj':2},'source':[2,3]}
+    //3亚麻叶/1亚麻花瓣/5柏树叶
+    {'key':'nlb','name':'尼龙布','level':3,'type':2,'material':{'ymy':3,'ymhb':1,'bsy':5},'source':[2,3]},
+    //5铝矿/5锡矿/9老柏木/9树油
+    {'key':'ylhj','name':'硬铝合金','level':3,'type':2,'material':{'lk':5,'xk':5,'lbm':9,'sy':5},'source':[2,3]},
+    //6银矿/3深红银矿/6铜矿/1钢筋/12老橡木
+    {'key':'th','name':'弹簧','level':3,'type':2,'material':{'yk':6,'shyk':3,'tk':6,'gj':1,'lxm':12},'source':[2,3]},
+    //缝纫线 3剑麻叶/2红麻皮/2禽羽/2珍珠/1毛线
+    {'key':'frx','name':'缝纫线','level':3,'type':2,'material':{'jmy':3,'hmp':2,'qy':2,'zhz':2,'maox':1},'source':[2,3],'job':4},
+    //皮革 1兽皮/3硝石/1胶带/3黄麻叶
+    {'key':'pg','name':'皮革','level':3,'type':2,'material':{'sp':1,'xs':3,'jd':1,'hmy':3},'source':[2,3],'job':4},
+    //钢管 5铜矿/5铝矿/9黄杨木/3方铅矿
+    {'key':'gg','name':'钢管','level':3,'type':2,'material':{'tk':5,'lk':5,'hym':9,'fqk':3},'source':[2,3],'job':5},
+    {'key':'gjnlhx','name':'高级能量核心','level':3,'type':2,'material':{'pg':7,'gg':7,'sm':10,'wb':7,'bmml':3},'source':[2,3]},
+    {'key':'gjjgkj','name':'高级结构框架','level':3,'type':2,'material':{'frx':6,'th':6,'ylhj':7,'nlb':7,'bmml':3},'source':[2,3]}
 ];

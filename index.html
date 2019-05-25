@@ -9,7 +9,7 @@
     <link rel="stylesheet" href="/assets/plugins/mui/css/mui.min.css">
     <link rel="stylesheet" href="/assets/plugins/mui/css/mui.indexedlist.css">
     <link rel="stylesheet" href="/css/app.css?t=9">
-    <script type="text/javascript" src="/assets/plugins/mui/js/mui.min.js"></script>
+    <script type="text/javascript" src="/assets/plugins/mui/js/mui.js"></script>
     <script type="text/javascript" src="/assets/plugins/mui/js/mui.view.js"></script>
     <script type="text/javascript" src="/assets/plugins/mui/js/mui.indexedlist.js"></script>
     <script type="text/javascript" src="/js/data.js"></script>
@@ -36,8 +36,12 @@
     <div class="mui-page-content">
         <div class="mui-scroll-wrapper">
             <div class="mui-scroll">
-                <div><button class="mui-btn mui-btn-green openFormula">选择配方</button></div>
+                <div>
+                    <button class="mui-btn mui-btn-green openFormula">选择配方</button>
+                    <button class="mui-btn mui-btn-green settingMaterial">设置材料信息</button>
+                </div>
                 <div class="formula-detail"></div>
+                <div class="formula-price"></div>
             </div>
         </div>
     </div>
@@ -46,6 +50,9 @@
 <div id="formula" class="mui-page">
     <!--页面标题栏开始-->
     <div class="mui-navbar-inner mui-bar mui-bar-nav">
+        <button type="button" class="mui-left mui-action-back mui-btn  mui-btn-link mui-btn-nav mui-pull-left">
+            <span class="mui-icon mui-icon-left-nav"></span>返回
+        </button>
         <h1 class="mui-center mui-title">配方选择</h1>
     </div>
     <div class="mui-page-content">
@@ -54,14 +61,27 @@
         </div>
     </div>
 </div>
-<!--入口首页-->
+<!--材料设置-->
+<div id="material" class="mui-page">
+    <!--页面标题栏开始-->
+    <div class="mui-navbar-inner mui-bar mui-bar-nav">
+        <button type="button" class="mui-left mui-action-back mui-btn  mui-btn-link mui-btn-nav mui-pull-left">
+            <span class="mui-icon mui-icon-left-nav"></span>返回
+        </button>
+        <h1 class="mui-center mui-title">材料设置</h1>
+    </div>
+    <div class="mui-page-content">
+        <div class="mui-scroll-wrapper">
+            <div class="mui-scroll materialBody"></div>
+        </div>
+    </div>
+</div>
 <script type="text/javascript">
     //初始化mui
     mui.init();
     mui.ready(function () {
         var a = new App();
         a.init();
-        console.log('test');
     });
 </script>
 </body>
