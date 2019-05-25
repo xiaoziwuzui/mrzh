@@ -179,6 +179,7 @@ var App = function () {
         if(!local){
             //基本物价
             local = '{"mt":1211,"st":1211,"m":0,"zwgj":18,"b":84,"xs":77,"sz":17,"mgj":18,"mjp":23,"cbt":50,"sl":393,"gjnlhx":18000,"gg":421,"pg":567,"sya":27,"bmml":625,"wb":70,"sm":27,"frx":1917,"ylhj":339,"shyk":88,"lxm":43,"yk":27,"gj":285,"gjjgkj":30000,"xk":15,"lbm":9,"ymy":12,"bsy":19,"lk":13,"tk":12,"hym":11,"jmy":32,"gfz":2800,"sy":19,"ymhb":27,"th":1209,"nlb":196,"dz":63,"jd":104,"hmp":300,"hmye":14,"yjp":11,"qy":63,"maox":300,"zhz":68}';
+            localStorage.setItem('uPrice',local);
         }
         local = JSON.parse(local);
         if(local){
