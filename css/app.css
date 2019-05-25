@@ -264,7 +264,8 @@ body{
     bottom:0;
     left: 0;
     z-index: 10;
-    max-height: 300px;
+    max-height: 250px;
+    overflow-y: auto;
 }
 .formula-price p{
     margin: 0;
