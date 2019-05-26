@@ -212,27 +212,49 @@ var App = function () {
         //组装Dom
         html.push('<div id="formulaList" class="mui-indexed-list">');
         html.push('<div class="mui-indexed-list-search mui-input-row mui-search">');
-        html.push('<input type="search" class="mui-input-clear mui-indexed-list-search-input" placeholder="搜索机场">');
+        html.push('<input type="search" class="mui-input-clear mui-indexed-list-search-input" placeholder="搜索配方">');
         html.push('</div>');
         html.push('<div class="mui-indexed-list-bar">');
+
+        //索引分组
+        var group = {};
+        for (var j=0;j<self.formula.length;j++){
+            item = self.formula[j];
+            if(group[item.first]){
+                group[item.first].push(item.key);
+            }else{
+                group[item.first] = [item.key];
+            }
+        }
+        //索引排序
+        var groupSort = [];
+        for(var k in group){
+            if(group.hasOwnProperty(k)){
+                groupSort.push(k);
+            }
+        }
+        groupSort.sort();
         //生成索引结构
-        for(i=0;i<26;i++) {
-            html.push('<a>'+String.fromCharCode(65 + i)+'</a>');
+        for(var b = 0;b<groupSort.length;b++){
+            html.push('<a>'+groupSort[b]+'</a>');
         }
         html.push('</div>');
         html.push('<div class="mui-indexed-list-alert"></div>');
         html.push('<div class="mui-indexed-list-inner">');
         html.push('<div class="mui-indexed-list-empty-alert">没有数据</div>');
         html.push('<ul class="mui-table-view" id="formulaUl">');
-        //生成固定的DOM结构
-        for(i=0;i<self.formula.length;i++){
-            item = self.formula[i];
-            if(prev_index !== item.first){
-                prev_index = item.first;
-                html.push('<li data-group="'+item.first+'" class="mui-table-view-divider mui-indexed-list-group">'+item.first+'</li>');
+
+        for(b = 0;b<groupSort.length;b++){
+            k = groupSort[b];
+            if(group.hasOwnProperty(k)){
+                html.push('<li data-group="'+k+'" class="mui-table-view-divider mui-indexed-list-group">'+k+'</li>');
+                for(var l=0;l<group[k].length;l++){
+                    item = self.formulaMap.get(group[k][l]);
+                    html.push('<li data-value="'+item.key+'" class="mui-table-view-cell mui-indexed-list-item">'+item.name+'</li>');
+                }
             }
-            html.push('<li data-value="'+item.key+'" class="mui-table-view-cell mui-indexed-list-item">'+item.name+'</li>');
         }
+
         html.push('</ul>');
         html.push('</div>');
         html.push('</div>');
@@ -260,29 +282,53 @@ var App = function () {
         html.push('<input type="search" class="mui-input-clear mui-indexed-list-search-input" placeholder="搜索材料">');
         html.push('</div>');
         html.push('<div class="mui-indexed-list-bar">');
-        //生成索引结构
-        for(i=0;i<26;i++) {
-            html.push('<a>'+String.fromCharCode(65 + i)+'</a>');
+
+        //索引分组
+        var group = {};
+        for (var j=0;j<self.material.length;j++){
+            item = self.material[j];
+            if(group[item.first]){
+                group[item.first].push(item.key);
+            }else{
+                group[item.first] = [item.key];
+            }
         }
+        //索引排序
+        var groupSort = [];
+        for(var k in group){
+            if(group.hasOwnProperty(k)){
+                groupSort.push(k);
+            }
+        }
+        groupSort.sort();
+        //生成索引结构
+        for(var b = 0;b<groupSort.length;b++){
+            html.push('<a>'+groupSort[b]+'</a>');
+        }
+
         html.push('</div>');
         html.push('<div class="mui-indexed-list-alert"></div>');
         html.push('<div class="mui-indexed-list-inner">');
         html.push('<div class="mui-indexed-list-empty-alert">没有数据</div>');
-        html.push('<ul class="mui-table-view" id="materialUl">');
-        //生成固定的DOM结构
-        for(i=0;i<material.length;i++){
-            item = self.materialMap.get(material[i]);
-            if(prev_index !== item.first){
-                prev_index = item.first;
-                html.push('<li data-group="'+item.first+'" class="mui-table-view-divider mui-indexed-list-group">'+item.first+'</li>');
-            }
-            total = parseInt(self.userData.get(material[i]));
-            price = parseInt(self.priceMap.get(material[i]));
-            if(isNaN(total) || !price) total = 0;
-            if(isNaN(price) || !price) price = 0;
+        html.push('<ul class="mui-table-view" id="formulaUl">');
 
-            html.push('<li data-value="'+item.key+'" class="mui-table-view-cell mui-indexed-list-item">'+item.name+'<small style="float: right;">库存:'+total+',单价:'+price+'</small></li>');
+
+        for(b = 0;b<groupSort.length;b++){
+            k = groupSort[b];
+            if(group.hasOwnProperty(k)){
+                html.push('<li data-group="'+k+'" class="mui-table-view-divider mui-indexed-list-group">'+k+'</li>');
+                for(var l=0;l<group[k].length;l++){
+                    item = self.materialMap.get(group[k][l]);
+                    total = parseInt(self.userData.get(group[k][l]));
+                    price = parseInt(self.priceMap.get(group[k][l]));
+                    if(isNaN(total) || !price) total = 0;
+                    if(isNaN(price) || !price) price = 0;
+
+                    html.push('<li data-value="'+item.key+'" class="mui-table-view-cell mui-indexed-list-item">'+item.name+'<small style="float: right;">库存:'+total+',单价:'+price+'</small></li>');
+                }
+            }
         }
+
         html.push('</ul>');
         html.push('</div>');
         html.push('</div>');
@@ -387,6 +433,9 @@ var App = function () {
             html += '<div class="formula-title"><span>'+detail.name+'</span></div>';
         }
         html += '<div class="formula-material">__BBB__<div class="formula-after"></div>';
+        if(level > 1){
+            html += '<div class="formula-control"></div>';
+        }
         for(var m in detail.material){
             if(detail.material.hasOwnProperty(m)){
                 material.push(m);
@@ -405,6 +454,8 @@ var App = function () {
         top = (level - 1) * 20;
         var first = 0;
         var last = 0;
+        var indexShow = false;
+        var temp2 = '';
         for(m in detail.material){
             temp = '';
             userT = null;
@@ -428,7 +479,14 @@ var App = function () {
                 temp = '<div class="material-item level-'+item.level+'" style="left:'+left+'px;top:0px"><span>'+item.name+'</span>';
                 temp += '<p><input type="number" readonly value="'+userT+'" placeholder="" size="3" maxlength="3" autocomplete="off"/><i>/'+detail['material'][m]+'</i></p>';
                 if(item.hasOwnProperty('type') && item.type === 2){
-                    temp += self.getFormulaDom(item.key,top,level + 1);
+                    temp2 = self.getFormulaDom(item.key,top,level + 1);
+                    if(indexShow === true){
+                        temp2 = temp2.replace('<div class="formula-material">','<div class="formula-material close">');
+                    }else{
+                        indexShow = true;
+                    }
+                    temp += temp2;
+
                 }
                 temp += '</div>';
                 html += temp;
