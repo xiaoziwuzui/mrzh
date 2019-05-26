@@ -228,6 +228,7 @@ var App = function () {
         for(i=0;i<self.formula.length;i++){
             item = self.formula[i];
             if(prev_index !== item.first){
+                prev_index = item.first;
                 html.push('<li data-group="'+item.first+'" class="mui-table-view-divider mui-indexed-list-group">'+item.first+'</li>');
             }
             html.push('<li data-value="'+item.key+'" class="mui-table-view-cell mui-indexed-list-item">'+item.name+'</li>');
@@ -272,6 +273,7 @@ var App = function () {
         for(i=0;i<material.length;i++){
             item = self.materialMap.get(material[i]);
             if(prev_index !== item.first){
+                prev_index = item.first;
                 html.push('<li data-group="'+item.first+'" class="mui-table-view-divider mui-indexed-list-group">'+item.first+'</li>');
             }
             total = parseInt(self.userData.get(material[i]));
