@@ -120,6 +120,9 @@ var App = function () {
             self.view.go('#material');
             self.materialList.caleLayout();
         });
+        mui('#app').on('tap','.openSetting',function () {
+            self.view.go('#setting');
+        });
         self.formulaSelect();
         self.materialSelect();
     };
@@ -350,7 +353,7 @@ var App = function () {
                     money += item.money;
                     priceH += '<p>'+item.name+' &times; '+item.total+';缺 '+item.dec+'; 支出:'+item.dec +'&times;'+item.price + '=' +item.money+'</p>';
                 }
-                priceH += '<p>'+(formula > 0 ? '售价 : '+ formula + ' - 15% = '+(formula - formula * 0.15)+';收入:'+(formula-money) + ';' : '') + '成本 : ' + money+'</p>';
+                priceH = '<p>'+(formula > 0 ? '售价 : '+ formula + ' - 15% = '+(formula - formula * 0.15)+';收入:'+(formula-money) + ';' : '') + '成本 : ' + money+'</p>' + priceH;
                 var $pel;
                 $pel = mui('.formula-price');
                 $pel[0].innerHTML = priceH;

@@ -1,3 +1,5 @@
+*{touch-action: none;}
+
 .mui-header{
     width: 100%;
     min-height: 44px;
@@ -263,13 +265,27 @@ body{
     padding: 4px;
     bottom:0;
     left: 0;
+    right: 0;
+    width: 100%;
     z-index: 10;
     max-height: 250px;
-    overflow-y: auto;
+    overflow-y: scroll;
+}
+.formula-price:before{
+    position: absolute;
+    right: 0;
+    top: 0;
+    left: 0;
+    height: 1px;
+    content: '';
+    -webkit-transform: scaleY(.5);
+    transform: scaleY(.5);
+    background-color: #c8c7cc;
 }
 .formula-price p{
     margin: 0;
     line-height: 1.5;
+    font-size: 12px;
 }
 
 
