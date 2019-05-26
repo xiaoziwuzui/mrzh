@@ -69,7 +69,7 @@ var App = function () {
             defaultPage: '#index'
         });
         //初始化单页的区域滚动
-        mui('.mui-scroll-wrapper').scroll();
+        // mui('.mui-scroll-wrapper').scroll();
         view = self.view.view;
         (function($) {
             //处理view的后退与webview后退
@@ -424,7 +424,7 @@ var App = function () {
                 }
 
                 temp = '<div class="material-item level-'+item.level+'" style="left:'+left+'px;top:0px"><span>'+item.name+'</span>';
-                temp += '<p><input type="number" value="'+userT+'" placeholder="" size="3" maxlength="3" autocomplete="off"/><i>/'+detail['material'][m]+'</i></p>';
+                temp += '<p><input type="number" readonly value="'+userT+'" placeholder="" size="3" maxlength="3" autocomplete="off"/><i>/'+detail['material'][m]+'</i></p>';
                 if(item.hasOwnProperty('type') && item.type === 2){
                     temp += self.getFormulaDom(item.key,top,level + 1);
                 }
